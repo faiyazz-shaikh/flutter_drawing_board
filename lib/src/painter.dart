@@ -108,6 +108,7 @@ class Painter extends StatelessWidget {
         child: ClipRect(
           clipBehavior: clipBehavior,
           child: RepaintBoundary(
+            key: drawingController.painterKey,
             child: CustomPaint(
               isComplex: true,
               painter: _DeepPainter(controller: drawingController),
@@ -180,7 +181,11 @@ class _DeepPainter extends CustomPainter {
     final Canvas tempCanvas = Canvas(
         recorder, Rect.fromPoints(Offset.zero, size.bottomRight(Offset.zero)));
 
-    canvas.saveLayer(Offset.zero & size, Paint());
+    // change
+    canvas.saveLayer(
+      Offset.zero & size,
+      ui.Paint()..filterQuality = ui.FilterQuality.high,
+    );
 
     for (int i = 0; i < controller.currentIndex; i++) {
       contents[i].draw(canvas, size, true);

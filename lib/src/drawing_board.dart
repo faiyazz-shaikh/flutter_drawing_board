@@ -195,7 +195,7 @@ class _DrawingBoardState extends State<DrawingBoard> {
   /// 构建画板
   Widget get _buildBoard {
     return RepaintBoundary(
-      key: _controller.painterKey,
+      // key: _controller.painterKey,
       child: ExValueBuilder<DrawConfig>(
         valueListenable: _controller.drawConfig,
         shouldRebuild: (DrawConfig p, DrawConfig n) =>
